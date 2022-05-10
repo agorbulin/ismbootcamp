@@ -1,0 +1,54 @@
+<div class="wrapper">
+    <div class="container">
+        <?php $empty = is_array($orderInfo) && count($orderInfo) > 0 ? '' : 'is empty' ?>
+        <h1>Admin order page <?= $empty ?></h1>
+        <?php if ($empty === ''): ?>
+            <h2>Order info table</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Order_id</th>
+                    <th>Visitor_id</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Total</th>
+                    <th>Created_at</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><?= htmlspecialchars($orderInfo['id']) ?></td>
+                    <td><?= htmlspecialchars($orderInfo['visitor_id']) ?></td>
+                    <td><?= htmlspecialchars($orderInfo['email']) ?></td>
+                    <td><?= htmlspecialchars($orderInfo['address']) ?></td>
+                    <td><?= htmlspecialchars($orderInfo['total']) ?></td>
+                    <td><?= htmlspecialchars($orderInfo['created_at']) ?></td>
+                </tr>
+                </tbody>
+            </table>
+            <h2>Order item table</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Product_id</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($orderItems as $item): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($item['id']) ?></td>
+                        <td><?= htmlspecialchars($item['product_id']) ?></td>
+                        <td><?= htmlspecialchars($item['price']) ?></td>
+                        <td><?= htmlspecialchars($item['qty']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>
+</body>
+</html>

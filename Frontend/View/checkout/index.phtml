@@ -1,0 +1,64 @@
+<div class="wrapper">
+    <div class="container">
+        <h1>Checkout page <?= $empty ?></h1>
+        <?php if (is_array($orderList) && count($orderList) > 0): ?>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($orderList
+
+                as $item):
+                ?>
+                <form action="/checkout/submit" method="post">
+                    <tr>
+                        <td><?= htmlspecialchars($item['Name']) ?></td>
+                        <td><?= htmlspecialchars($item['Price']) ?></td>
+                        <td><?= htmlspecialchars($item['qty']) ?>
+                            <input type="hidden" name="qty" value="<?= htmlspecialchars($item['qty']) ?>">
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td colspan="3">TOTAL: <?= htmlspecialchars($total) ?>
+                            <input type="hidden" name="total" value="<?= htmlspecialchars($total) ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Email: <input type="email" class="email" name="email" value="" required></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Address:
+                            <textarea name="address" value=""></textarea>
+                        </td>
+                    </tr>
+                    <?php if (is_array($warehouseList) && count($warehouseList) > 0): ?>
+                        <tr>
+                            <td colspan="3">Address NP:
+                                <select class="address" name="warehouse" size="1">
+                                    <option selected disabled>Choose warehouse</option>
+                                    <?php foreach ($warehouseList as $warehouse): ?>
+                                        <option value="<?= htmlentities($warehouse['Description']) ?>"><?= htmlentities($warehouse['Description']) ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr>
+                        <td colspan="3">
+                            <button type="submit" class="add_product">Submit</button>
+                        </td>
+                    </tr>
+                </form>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>
+</body>

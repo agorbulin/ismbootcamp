@@ -1,0 +1,47 @@
+<?php
+if (!$productItem) {
+    $obj = new \Frontend\Controller\Error404();
+    $obj->errorAction();
+    throw new Exception("Params $productItem does not exist");
+}
+?>
+<div class="wrapper">
+    <div class="container">
+        <h1>Page product</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>SKU</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><?= htmlspecialchars($productItem['Name']) ?></td>
+                <td><?= htmlspecialchars($productItem['Price']) ?></td>
+                <td><img src="<?= htmlspecialchars($productItem['Image']) ?>" alt="smile:)"></td>
+                <td><?= htmlspecialchars($productItem['Description']) ?></td>
+                <td><?= htmlspecialchars($productItem['SKU']) ?></td>
+                <td>
+                    <div class="add_cart">
+                        <form class="form_add_cart" action="/cart/addItem" method="post">
+                            <div class="field_qty">Qty:
+                                <input class="imput_qty" type="text" name="qty" value="1">
+                                <input type="hidden" name="product_id"
+                                       value="<?= htmlspecialchars($productItem['Id']) ?>">
+                            </div>
+                            <button type="submit" class="add_product">Add to cart</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

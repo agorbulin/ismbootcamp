@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <div class="container">
+        <h1>Cart list <?= $empty ?></h1>
+        <?php if (is_array($cartList) && count($cartList) > 0): ?>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($cartList as $item): ?>
+                    <tr>
+                        <td>
+                            <a href="/product/view/id/<?= htmlspecialchars($item['Id']) ?>"><?= htmlspecialchars($item['Name']) ?></a>
+                        </td>
+                        <td><?= htmlspecialchars($item['Price']) ?></td>
+                        <td><?= htmlspecialchars($item['qty']) ?></td>
+                        <td><?= htmlspecialchars($item['totalItem']) ?></td>
+                        <td>
+                            <form action="/cart/deleteItem/id/<?= htmlspecialchars($item['id']) ?>" method="post">
+                                <button type="submit" class="add_product">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="3">TOTAL</td>
+                    <td colspan="2"><?= $total ?></td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <form action="/checkout/index" method="post">
+                            <button type="submit" class="add_product">Checkout</button>
+                        </form>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>
+</body>
+</html>

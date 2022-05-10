@@ -1,0 +1,46 @@
+<div class="wrapper">
+    <div class="container">
+        <h1>Product list</h1>
+        <form action="/product/list/" method="get" id='sort'>
+            <p><label for="sort">Sort</label>
+                <select name='sort' size="1"">
+                <option selected disabled>Choose sort</option>
+                <option value="PriceLowToHi">Price low to hi</option>
+                <option value="PriceHiToLow">Price hi to low</option>
+                <option value="NameAZ">Name a-z</option>
+                <option value="NameZA">Name z-a</option>
+                </select>
+                <input type="submit" value="Send sorting">
+            </p>
+        </form>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($listProduct as $item): ?>
+                <tr>
+                    <td>
+                        <a href="/product/view/id/<?= htmlspecialchars($item['Id']) ?>"><?= htmlspecialchars($item['Name']) ?></a>
+                    </td>
+                    <td><?= htmlspecialchars($item['Price']) ?></td>
+                    <td><?= htmlspecialchars($item['Description']) ?></td>
+                    <td><img src="<?= htmlspecialchars($item['Image']) ?>" alt="smile:)"></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <div class="navigation">
+            <?php if (isset($pagination) && $pagination && $pagination->countPages > 1): ?>
+                <?= $pagination ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+</body>
+</html>

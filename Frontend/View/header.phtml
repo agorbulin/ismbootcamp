@@ -1,0 +1,42 @@
+<?php $session = new \Session; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?= $title ?></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<hr>
+<header>
+    <div>
+        <a href="/">Home</a>
+    </div>
+    <div>|</div>
+    <div class="search">
+        <form class="form_search" action="/search/" method="get">
+            <div class="field_search">
+                <input class="imput_search" type="text" name="searchQuery" value="" placeholder="Search..."
+                       maxlength="128">
+            </div>
+            <div class="actions">
+                <button type="submit" class="action search">
+                    <span>Search</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div>|</div>
+    <div class="header_right">
+        <a href="/admin/user/login">login</a>
+        <span>|</span>
+        <a class="cart" href="/cart">Cart &#x1f6d2;</a>
+    </div>
+</header>
+<?php if ($message = $session->getMessage()): ?>
+    <div class="message">
+        <?= htmlspecialchars($message) ?>
+    </div>
+<?php endif; ?>
+<hr>

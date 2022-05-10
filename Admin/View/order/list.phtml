@@ -1,0 +1,33 @@
+<div class="wrapper">
+    <div class="container">
+        <?php $empty = is_array($orderList) && count($orderList) > 0 ? '' : 'is empty' ?>
+        <h1>Admin order list <?= $empty ?></h1>
+        <?php if ($empty === ''): ?>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Order_id</th>
+                    <th>Email</th>
+                    <th>Total</th>
+                    <th>Created_at</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php foreach ($orderList as $item): ?>
+                    <tr>
+                        <th>
+                            <a href="/admin/order/view/id/<?= htmlspecialchars($item['id']) ?>"><?= htmlspecialchars($item['id']) ?></a>
+                        </th>
+                        <td><?= htmlspecialchars($item['email']) ?></td>
+                        <td><?= htmlspecialchars($item['total']) ?></td>
+                        <td><?= htmlspecialchars($item['created_at']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php endif; ?>
+    </div>
+</div>
+</body>
+</html>

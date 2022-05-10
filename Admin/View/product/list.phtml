@@ -1,0 +1,38 @@
+<div class="wrapper">
+    <div class="container">
+        <h1>Admin product list</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    <form action="/admin/import/product" method="post">
+                        <p>
+                            <button class="add_product">Import Products</button>
+                        </p>
+                    </form>
+                    <form action="/admin/product/edit" method="post">
+                        <p>
+                            <button class="add_product">Add Product</button>
+                        </p>
+                    </form>
+                </th>
+            </tr>
+            <tr>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php foreach ($listProduct as $item): ?>
+                <tr>
+                    <td>
+                        <a href="/admin/product/edit/id/<?= htmlspecialchars($item['Id']) ?>"><?= htmlspecialchars($item['Name']) ?></a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

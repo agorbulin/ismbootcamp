@@ -1,0 +1,88 @@
+<?php
+if (empty($productItem)) {
+    $productItem['Id'] = '';
+    $productItem['Name'] = '';
+    $productItem['Price'] = '';
+    $productItem['Qty'] = '';
+    $productItem['Image'] = '';
+    $productItem['Description'] = '';
+    $productItem['SKU'] = '';
+    $productItem['is_enabled'] = '';
+}
+?>
+<div class="wrapper">
+    <div class="container">
+        <h1><?= $heading ?> product</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>SKU</th>
+                <th>Actions</th>
+                <th class="<?= $noActive ?>">Actions</th>
+                <th class="<?= $noActive ?>">Visibility</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <form action="/admin/product/save/id/<?= htmlspecialchars($productItem['Id']) ?>" method="post"
+                      enctype="multipart/form-data">
+                    <td><p><input type="text" class="edit_item" name="name"
+                                  value="<?= htmlspecialchars($productItem['Name']) ?>" required></input></p>
+                    </td>
+                    <td><p><input type="text" class="edit_item" name="price"
+                                  value="<?= htmlspecialchars($productItem['Price']) ?>" required></input></p>
+                    </td>
+                    <td><p><input type="text" class="edit_item" name="qty"
+                                  value="<?= htmlspecialchars($productItem['Qty']) ?>" required></input></p>
+                    </td>
+                    <td><p><input class="file" type="hidden" name="image"
+                                  value="<?= htmlspecialchars($productItem['Image']) ?>"></input>
+                            <input type="file" class="file" name="image"></input></p>
+                        <img src="<?= htmlspecialchars($productItem['Image']) ?>" class="<?= $noActive ?>"
+                             alt="smile:)">
+                    </td>
+                    <td><p><input type="text" class="edit_item" name="description"
+                                  value="<?= htmlspecialchars($productItem['Description']) ?>"></input></p>
+                    </td>
+                    <td><p><input type="text" class="edit_item" name="SKU"
+                                  value="<?= htmlspecialchars($productItem['SKU']) ?>" required></input></p>
+                    </td>
+                    <td>
+                        <p>
+                            <button type="submit" class="add_product">Save</button>
+                        </p>
+                    </td>
+                </form>
+                <td class="<?= $noActive ?>">
+                    <form class="<?= $noActive ?>"
+                          action="/admin/product/delete/id/<?= htmlspecialchars($productItem['Id']) ?>" method="post">
+                        <p>
+                            <input class="<?= $noActive ?>" type="hidden" name="id"
+                                   value="<?= htmlspecialchars($productItem['Id']) ?>"></input>
+                            <button type="submit" class="add_product <?= $noActive ?>">Delete</button>
+                        </p>
+                    </form>
+                </td>
+                <td class="<?= $noActive ?>">
+                    <form class="<?= $noActive ?>"
+                          action="/admin/product/enable/id/<?= htmlspecialchars($productItem['Id']) ?>" method="post">
+                        <p>
+                            <input class="<?= $noActive ?>" type="hidden" name="is_enabled"
+                                   value="<?= htmlspecialchars($productItem['is_enabled']) ?>"></input>
+                            <button type="submit"
+                                    class="add_product <?= $noActive ?>"><?= htmlspecialchars($productItem['is_enabled']) == 1 ? 'Shown' : 'Hidden' ?></button>
+                        </p>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

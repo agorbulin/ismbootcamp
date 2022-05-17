@@ -1,0 +1,7 @@
+.idea
+config.php
+log/
+var/*
+!var/db/
+system.log
+nbproject/
